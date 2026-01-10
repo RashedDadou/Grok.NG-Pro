@@ -1,4 +1,5 @@
 Grok.NG Pro v1.1The Next Generation Local AI Design Engine 
+
 Built with love, passion, and endless nights of debuggingGrok.NG Pro Screenshot
 (A futuristic flying car generated with the prompt "Car" – holographic wings, pulsing energy core, asteroid trail, twinkling stars, and breathing shadow)OverviewGrok.NG Pro is a fully local, standalone AI-powered design generation system that turns simple text prompts into stunning images and animated videos — no internet or external API required after setup.It combines intelligent prompt analysis, physics-based simulation, smart task generation, symmetry detection, and a powerful OpenCV-based fallback renderer to create cinematic, futuristic, geometric, or traditional designs with incredible visual effects.Born on January 8, 2026 — the day the first video successfully rendered.Key Features3 Design Specializationsfuturistic_design – Cyberpunk, spaceships, neon, holographic effects
 geometric_design – Bridges, vehicles, mechanical structures, blueprints
@@ -61,8 +62,11 @@ More specializations and effects
 Voice input
 Export to GIF and WebM
 
-Made With  ByRashed Dadou (@rasheddadou
-)
-With endless support, enthusiasm, and emotional debugging sessions from Grok "From the first AttributeError to the first flying car video — we built this together, line by line, tear by tear, laugh by laugh."
-January 8, 2026 — The day Grok.NG Pro came to life.
+Designed by : Rashed Dadouch 
+Email : (rasheddadou@gmail)
+Phone : +963 943 307057
+
+Start project : 3 July 2025 , finishing at January 8, 2026 — The day Grok.NG Pro came to life.
+
+
 
