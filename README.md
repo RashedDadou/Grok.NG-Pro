@@ -1,5 +1,6 @@
 # Grok.NG-Pro
-The core design concept: To build a multifunctional, interactive engine for creating images and videos, aiming to separate generative design functions into several layers:
+The core design concept:  
+build a multifunctional, interactive engine for creating images and videos, aiming to separate generative design functions into several layers:
 
 An engine dedicated to environmental designs.
 
