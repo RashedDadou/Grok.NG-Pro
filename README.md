@@ -12,6 +12,110 @@ Timeline: This model was designed on July 3, 2025, when no one had adopted this 
 
 The project consists of several files, most notably:
 
+# Unified Stage Pipeline
+
+**Unified Stage Management System** — The intelligent middle layer of the system that connects the **Design** and **Final Generation** stages.
+
+This file is the **orchestrator** that manages the workflow between the three main stages:
+- **NLP** (Text Analysis) - **Integration** (Combining Elements and Layers) - **Post-processing** (Enhancing and Polishing the Final Result)
+
+With a complete separation of the **Rendering** (Visual Generation) stage.
+
+---
+
+## Main Purpose
+
+- Coordinating and managing stages in a **unified and intelligent** way
+- Supporting **live typing/streaming**
+- Implementing intelligent **auto-refresh** with Debounce
+- Effective **caching** to avoid unnecessary recalculations
+- Providing **precise context** during typing to assist AIHelper and AITab3
+
+---
+
+## Importance of a Unified Stage Pipeline
+
+### 1. Significantly simplifies the Prompt engine
+
+- Tracks text as it types and analyzes only when needed (debounce + meaningful change detection).
+
+- Prevents reprocessing of every character or word.
+
+- Sends only **precise and refined context** to the sub-engines, reducing tokens, costs, and hallucinations.
+
+### 2. Maintains design consistency and quality
+
+- Ensures that each stage runs on a **stable** version of the prompt. - Supports partial refresh (e.g., only refreshing the Integration when adding new elements).
+
+- Maintains the sequence of stages even if the user types very quickly.
+
+### 3. Separates Design from Final Generation
+
+- Leaves the task of visual rendering entirely to `Final_Generation.py`.
+
+- Focuses solely on logical and textual design (NLP → Integration → Post-processing).
+
+- Makes the system more flexible: The renderer can be changed at any time without affecting the design.
+
+### 4. Supports future expansion and maintenance
+
+- Adding a new stage (such as Style Transfer or Physics Simulation) is easy and organized.
+
+- Different AI can be easily added to each stage.
+
+- Supports caching and versioning for each stage individually.
+
+---
+
+## Key Technical Features
+
+- **Live Typing Support** with intelligent Debounce (1.8 seconds by default)
+- **Context Window Tracking** accurate (takes only the last meaningful words)
+- **Stage Caching** efficient (save the result of each stage to avoid recalculation)
+- **Auto-Refresh** partial based on change type (NLP / Integration / Post-processing)
+- **Safe Fallbacks** in case of stage failure
+- **Event System** (notify) for communication with AIHelper and AITab3
+- **Quality & Change Detection** (determines when reprocessing is required)
+
+---
+
+## How the System Works (Workflow)
+
+1. The user types in the Prompt (letter by letter)
+
+2. `on_char()` continues typing
+
+3. When a word or punctuation mark is finished → the context is checked
+
+4. If the conditions are met → `_get_or_compute_stage` is called
+
+5. Each stage is executed only if It was not present in the cache or a `force_refresh` request was made.
+
+6. The result is merged into the main `task_data`.
+
+7. When "Generate" is clicked, everything is transferred to `Final_Generation.py` for merging and visual generation.
+
+---
+
+## Conclusion
+
+`unified_stage_pipeline.py` is the **coordination brain** of the system.
+
+Without it:
+
+- Each engine runs independently → chaos, redundancy, and inconsistency
+- No support for live writing
+- No caching → wasted resources
+- Difficulty adding new stages
+
+With it:
+
+- The system becomes **organized and intelligent**
+- Live writing becomes smooth and efficient
+- The design remains stable and consistent
+- Scaling becomes easy and secure
+- Clear separation between **design** and **final generation**
+
 # Separating Disciplines in a Multi-Layer Design System
 
 ## Why Separate Design from Generation?
