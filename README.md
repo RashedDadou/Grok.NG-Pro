@@ -8,8 +8,10 @@ An engine dedicated to traditional designs (humans/animals).
 
 An engine dedicated to engineering designs (machines/aircraft/cars/ships, etc.).
 
+Timeline:
+The idea for this design model began on July 3, 2025, at a time when no one had adopted this design before.
+Most systems at that time relied on real-time engineering design as a single integrated engine (real-time generation → direct generation). The concept of using an "environmental layer + conventional layer + engineering layer" architecture was not yet in its infancy.
 To equip the engine with iterative regeneration technologies through functions such as (refresh/iterative virtual tours), functions not integrated into other traditional generative design engines, in order to improve the quality of instant generation and reduce errors .
-Timeline: This model was designed on July 3, 2025, when no one had adopted this design. Most instant engineering design systems relied on a single integrated engine (instant generation → direct generation). The idea of ​​using an "environmental layer + traditional layer + engineering layer" architecture was in its infancy.
 
 The project consists of several files, most notably:
 
