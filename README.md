@@ -13,6 +13,118 @@ Timeline: This model was designed on July 3, 2025, when no one had adopted this 
 
 The project consists of several files, most notably:
 
+# Core Image Generation Engine
+
+**Common Core** — The foundation upon which every multi-layered generation system is built.
+
+This file is the **backbone** of the entire project. Every specialized engine (`environment_design_engine`, `traditional_design_engine`, `geometric_design_engine`, etc.) inherits from it.
+
+---
+
+## Main Purpose
+
+`CoreImageGenerationEngine` is an **Abstract Base Class** that provides:
+
+- A unified structure common to all engines
+- Abstract basic functions (`abstractmethod`) that every engine must implement
+- Common common logic (Retry Logic, Fallback, Caching, Topological Sort, Prompt Management, Logging...)
+- Clean separation of concerns
+
+---
+
+## Importance of this file in the system
+
+### 1. Ensures compatibility and consistency among all engines
+
+Without this file, each engine would have a different structure → chaos in `Final_Generation.py`.
+
+With it:
+
+- All engines follow the same interface (`generate_layer`, `design`, or `produce_design`)
+- They can be called in the same way in `Final_Generation`
+- Adding a new engine is easy (such as `character_design_engine` or `vehicle_design_engine`)
+
+### 2. It relieves specialized engines from duplicate code
+
+Each specialized engine focuses only on its **specialty**:
+
+- `environment` → focuses on heightmaps and environmental elements
+- `traditional` → focuses on characters and organic objects
+- `geometric` → focuses on geometric and mechanical elements
+
+The general logic (dependency checking, retry, storage, fallback, timing, etc.) is only found in the **kernel**.
+
+### 3. Maintains the principle of "design-independent generation"
+
+- Supports separating the design (`design` / `produce_design`) from the final generation (`render`)
+- Allows the design to be stored in memory and reused multiple times
+- Makes `Final_Generation.py` responsible only for merging, not for the design
+
+### 4. Provides advanced security and stability mechanisms
+
+- `retry_layer_generation` → Intelligent retry upon failure
+- `_normalize_stage_result` → Uniformity of results (even if legacy float or None)
+- `_ensure_task_data_structure` → Always secure structure
+- Topological Sort for tasks and dependencies
+- PromptState organized for tracking live writes
+
+---
+
+## Main Components of CoreImageGenerationEngine
+
+| Function / Class | Main Role |
+
+|----------------------------------|------------------------------------|
+
+| `PromptState` | Tracking prompt state during live writing |
+
+| `_run_generation` | Centralized workflow execution (Analyze → Integrate → Render) |
+
+| `_call_unit` | Safely execute any stage with normalized results |
+
+| `retry_layer_generation` | Smart retry with quality evaluation |
+
+| `_normalize_stage_result` | Unify different result types (legacy + modern) |
+
+| `add_task` + `topological_sort` | Manage tasks and dependencies between them |
+
+| `_get_or_compute_stage` | Smart caching + stage execution |
+
+---
+
+## Overall Benefits of Separating the Core
+
+- **Maintenance**: Common logic changes are made in only one place.
+
+- **Scalability**: Adding a new engine is quick and easy.
+
+- **Stability**: All engines behave the same way.
+- **Testing**: Common logic can be tested once (`TestEngine`).
+
+**Clarity**: Each file knows its exact role (design/merge/generate).
+
+---
+
+## Conclusion
+
+`Core_Image_Generation_Engine.py` is the **architectural foundation** of the entire system.
+
+Without it:
+
+- Every engine would have duplicate code
+- Any general change would require modifications to 5-6 files
+- Adding new engines would be extremely difficult
+- The system would become cluttered and unmaintainable
+
+With it:
+- The system would be clean, organized, and scalable
+- There would be a clear separation between design, integration, and generation
+- We could focus on developing each engine individually without fear of breaking the rest of the system
+
+> "Good code isn't just code that works, but code that allows you to change one part without breaking the rest."
+
+This file is a practical application of this principle.
+
 # Unified Stage Pipeline
 
 **Unified Stage Management System** — The intelligent middle layer of the system that connects the **Design** and **Final Generation** stages.
