@@ -125,6 +125,117 @@ With it:
 
 This file is a practical application of this principle.
 
+# Image Generation Core
+
+**File: `Image_generation.py`**
+
+This file is the **final visual generation layer** in the system and is considered a **practical and operational complement** to the `Core_Image_Generation_Engine.py` file.
+
+While `Core_Image_Generation_Engine.py` contains the abstract base class, `Image_generation.py` contains:
+
+- The actual rendering implementation
+- Pre-made engine examples
+- Functions for printing and rendering
+- Advanced rendering using Matplotlib
+
+---
+
+## Main Purpose
+
+This file is responsible for **converting the theoretical design** (produced by the specialized engines) into a **real visual output** (image or GIF video).
+
+It is the bridge between the **Design Phase** and the **Rendering Phase**.
+
+---
+
+## Importance of this file
+
+### 1. Separation of design from visual rendering
+
+- Perfectly maintains the principle of **Separation of Concerns**.
+
+- Specialized engines (`environment`, `traditional`, `geometric`) focus on **design and logic**.
+
+- `Image_generation.py` focuses solely on **how to visually render** this design.
+
+### 2. Includes powerful, ready-made implementations
+
+- Includes a complete and advanced `GeometricDesignEngine` (Koch Snowflake, Golden Spiral, Fractal, Animated Planes, etc.).
+
+- Supports **generating high-quality animated GIFs** (rotational).
+
+- Supports generating high-resolution still images (high DPI).
+
+- Uses Matplotlib for precise and professional geometric drawing.
+
+### 3. Simplifies specialized engines
+
+- The `traditional_design_engine` and `environment_design_engine` don't need to worry about how to render.
+
+- They only need to return design data (`elements`, `heightmap`, `metadata`).
+
+- `Image_generation.py` handles the actual rendering.
+
+### 4. Supports future expansion
+
+- New engines can be easily added (such as Character Renderer, Vehicle Renderer, etc.).
+
+- Matplotlib can be replaced with the Blender Python API, Three.js, or Stable Diffusion later without changing the core engines.
+
+- It includes the very useful `print_generation_result` function for debugging and rendering.
+
+---
+
+## Main Components
+
+| Component | Main Role |
+
+------------------------------- ... Print generation results beautifully and neatly |
+
+| `CoreImageGenerationEngine` | Extended/Supplemental version of the core |
+
+| `GeometricDesignEngine` | A complete geometric engine with advanced drawing and GIF support |
+
+| `_create_simple_image` | Actual drawing using Matplotlib (Koch, Spiral...) |
+
+| `_render` | Perform final rendering (image or video) |
+
+---
+
+## How does it integrate with `Core_Image_Generation_Engine.py`?
+
+
+- `Core_Image_Generation_Engine.py` = **Common Structure and Logic** (Abstract Class)
+
+- `Image_generation.py` = **Actual Visual Implementation** + Example Engines
+
+Relationship between them:
+
+- Every specialized engine inherits from `CoreImageGenerationEngine`
+
+- `Image_generation.py` provides the visual layer that engines can use or extend
+
+- `Final_Generation.py` calls the rendering from this file or uses it as a backend
+
+---
+
+## Conclusion
+
+`Image_generation.py` is the **actual visual part** of the system.
+
+Without it:
+
+- Specialized engines will only produce textual data.
+- There will be no real visual output (images or GIFs).
+
+With it:
+- The system becomes capable of producing **real visual outputs**.
+- The design result can be seen immediately.
+- Development becomes easier (we test the drawing separately).
+- It opens the door to developing more advanced renderers (Blender, Unreal, SDXL with ControlNet, etc.).
+
+This file is the **bridge between theoretical design and visual reality**.
+
 # Unified Stage Pipeline
 
 **Unified Stage Management System** — The intelligent middle layer of the system that connects the **Design** and **Final Generation** stages.
