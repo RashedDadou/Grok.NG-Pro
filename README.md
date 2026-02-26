@@ -118,3 +118,85 @@ With this separation, our system has become:
 > "A good design is one that allows you to change one part without the rest collapsing."
 
 — The principle of Separation of Concerns
+
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ # Generative Memory Manager
+
+**Generative Memory Manager** — The heart of the system that stores, retrieves, cleans, and protects all designs produced by the specialized engines.
+
+## Main Purpose
+
+This file is not just ordinary "storage," but an **intelligent memory system** that plays a fundamental role in making the system complete:
+
+- Permanently and systematically saving designs
+- Retrieving them at extremely high speeds
+- Maintaining **consistency** across all scenes
+- Cleaning and filtering unwanted content (Creepy Filter)
+- Supporting versioning for each design
+
+---
+
+## Importance of Separating Generative Memory as an Independent Layer
+
+When we separate **memory** from the rest of the engines, we gain significant strategic advantages:
+
+### 1. Radically simplifies the Prompt engine
+
+- The Prompt engine no longer needs to parse a long description every time.
+
+- Simply sending `prompt_hash` → instantly retrieves the finished design.
+
+- Significantly reduces token consumption, time, and cost in LLM models.
+
+- Allows the reuse of a single character design across dozens of scenes without redesigning it.
+
+### 2. Design Consistency
+
+- **Humans and Characters**: The same girl, the same eye color, the same hair style, the same clothing in every scene.
+
+- **Animals**: The same horse, the same dragon, the same wolf with all its details.
+
+- **Engineering Objects**:
+
+- The same car (model, color, logo, interior details)
+
+- The same aircraft (engine type, design, colors)
+
+- The same machines, robots, and buildings. - Prevents the "inconsistency" that usually occurs when each scene is generated independently.
+
+### 3. Safety and Content Moderation
+
+- Detects creepy content (Creepy Filter) before storage or generation.
+
+- Automatically cleans, warns against, or rejects dangerous content.
+
+- Protects the system from generating unwanted images or scenes.
+
+### 4. The Advantage of Designing as a First-Class Citizen
+
+When a design is stored independently, we get:
+
+- **High Reusability**: A single character design can be used in 100 different scenes.
+
+- **Complete Control**: A vehicle design can be modified once in memory, and it will automatically change in every scene.
+
+- **Copying and Traceability**: You can revert to any previous version (v1, v2, v3...) of the design.
+
+- **Collaboration**: The character designer, environment designer, and vehicle designer work independently, and their work is then combined in `Final_Generation`.
+
+- **Speed**: Retrieving a finished design is much faster than regenerating Prompt every time.
+
+---
+
+## What Memory Manager currently stores:
+
+- Environment designs
+- Traditional character and object designs
+- Geometric design
+- Composite results
+- Versioning
+- Heightmaps and raw assets
+- Analysis data and metadata
+
+Everything is stored in an organized folder:
